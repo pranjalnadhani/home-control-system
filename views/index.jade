@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  div(ng-controller="mainController")
+    nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
+      a.navbar-brand(href="#") To-do list
+      
+    ul.list-group
+      input.list-group-item.form-control(type="textbox", ng-model="formData.title", ng-keyup="$event.keyCode == 13 && createTodo()", placeholder="Add a todo...")
+      li.list-group-item.list-group-item-action(ng-repeat="todo in todos")
+        input.checkbox(id="item-{{todo.id}}", type="checkbox", ng-model="todo.done", ng-click="updateTodo(todo)")
+        label(for="item-{{todo.id}}", ng-style="todo.done && checkedTodo") {{todo.title}}
+        button.close(type="button", aria-label="Close", ng-click="deleteTodo(todo.id)")
+          span(aria-hidden="true") &times;

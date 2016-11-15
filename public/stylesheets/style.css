@@ -1,0 +1,8 @@
+body {
+  margin-top: 54px;
+}
+
+.list-group-item:first-child,
+.list-group-item:last-child {
+  border-radius: 0px;
+}
