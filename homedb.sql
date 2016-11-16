@@ -1,9 +1,3 @@
-/*
-DROP DATABASE IF EXISTS homedb;
-CREATE DATABASE homedb OWNER homedb;
-
-\c homedb;
-*/
 DROP TABLE IF EXISTS devices;
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS rooms;
@@ -42,6 +36,7 @@ CREATE TABLE types (
   name VARCHAR,
   default_title VARCHAR,
   brand VARCHAR,
+  sensor BOOLEAN NOT NULL,
   values JSON
 );
 
@@ -50,7 +45,6 @@ CREATE TABLE devices (
   type_id INTEGER NOT NULL,
   name VARCHAR,
   state BOOLEAN NOT NULL,
-  sensor BOOLEAN NOT NULL,
   values JSON,
   port INTEGER,
   room_id INTEGER,
@@ -63,8 +57,15 @@ CREATE TABLE devices (
 INSERT INTO users (username, password, email, mobile_no, first_name, last_name)
   VALUES ('sample', 'password', 'email@example.com', '9876543210', 'Sample', 'User');
 
-INSERT INTO types (name, default_title, brand, values)
-  VALUES ('bulb', 'Bulb', 'Philips', '[{"name": "intensity", "units":"units"}]');
+INSERT INTO types (name, default_title, brand, sensor, values)
+  VALUES ('bulb', 'Bulb', 'Philips', 'false', '[{"name": "intensity", "units":"units"}]');
 
-INSERT INTO types (name, default_title, brand, values)
-  VALUES ('dht22', 'Temperature & Humidity Sensor', 'China', '[{"name": "temperature", "units":"degrees"}, {"name": "humidity", "units":"percentage"}]');
+INSERT INTO types (name, default_title, brand, sensor, values)
+  VALUES ('dht22', 'Temperature & Humidity Sensor', 'China', 'true', '[{"name": "temperature", "units":"degrees"}, {"name": "humidity", "units":"percentage"}]');
+
+/* Debug purposes */
+INSERT INTO homes (name, address, user_id)
+  VALUES ('My home', '8TH KM Dehradun Road Puhana Roorkee', 1);
+
+INSERT INTO rooms (name, home_id)
+  VALUES ('Bedroom', 1);

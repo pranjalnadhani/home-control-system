@@ -10,6 +10,7 @@ var users_api = require("./routes/users_api");
 var homes_api = require("./routes/homes_api");
 var rooms_api = require("./routes/rooms_api");
 var devices_api = require("./routes/devices_api");
+var types_api = require("./routes/types_api")
 
 users_api.use('/:user_id/homes', homes_api);
 homes_api.use('/:home_id/rooms', rooms_api);
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/api/users', users_api);
+app.use('/api/types', types_api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
