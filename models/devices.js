@@ -41,7 +41,7 @@ function getSingleDevice(req, res, next) {
 
 // POST
 function createDevice(req, res, next) {
-  db.none("INSERT INTO devices (type_id, name, state, values, port, room_id) VALUES ($1, $2, $3, $4, $5, $6, $7)", [req.body.type_id, req.body.name, req.body.state, req.body.values, req.body.port, req.params.room_id])
+  db.none("INSERT INTO devices (type_id, name, state, values, port, room_id) VALUES ($1, $2, $3, $4, $5, $6)", [req.body.type_id, req.body.name, req.body.state, req.body.values, req.body.port, req.params.room_id])
     .then(function() {
       res.status(200)
         .json({
@@ -56,7 +56,7 @@ function createDevice(req, res, next) {
 
 // PUT
 function updateDevice(req, res, next) {
-  db.none("UPDATE devices SET type_id = $1, name = $2, state = $3, values = $4, port = $5, room_id = $6 WHERE _id = $7", [req.body.type_id, req.body.name, req.body.state, req.body.values, req.body.port, req.body.room_id, parseInt(req.params.device_id)])
+  db.none("UPDATE devices SET type_id = $1, name = $2, state = $3, values = $4, port = $5, room_id = $6 WHERE _id = $7", [parseInt(req.body.type_id), req.body.name, req.body.state, req.body.values, req.body.port, req.body.room_id, parseInt(req.params.device_id)])
     .then(function() {
       res.status(200)
         .json({
