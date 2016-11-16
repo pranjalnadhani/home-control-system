@@ -46,7 +46,7 @@ CREATE TABLE devices (
   name VARCHAR,
   state BOOLEAN NOT NULL,
   values JSON,
-  port INTEGER,
+  port VARCHAR,
   room_id INTEGER,
 
   FOREIGN KEY (room_id) REFERENCES rooms (_id),
@@ -58,10 +58,10 @@ INSERT INTO users (username, password, email, mobile_no, first_name, last_name)
   VALUES ('sample', 'password', 'email@example.com', '9876543210', 'Sample', 'User');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('bulb', 'Bulb', 'Philips', 'false', '[{"name": "intensity", "units":"units"}]');
+  VALUES ('bulb', 'Bulb', 'Philips', 'false', '[{"name":"brightness","units":"%"}]');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('dht22', 'Temperature & Humidity Sensor', 'China', 'true', '[{"name": "temperature", "units":"degrees"}, {"name": "humidity", "units":"percentage"}]');
+  VALUES ('dht22', 'Temperature & Humidity Sensor', 'China', 'true', '[{"name":"temperature","units":"C"},{"name":"humidity","units":"%"}]');
 
 /* Debug purposes */
 INSERT INTO homes (name, address, user_id)
@@ -69,3 +69,9 @@ INSERT INTO homes (name, address, user_id)
 
 INSERT INTO rooms (name, home_id)
   VALUES ('Bedroom', 1);
+
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (1, 'Bulb 1', 'true', '{"brightness":"100"}', 'A2', 1);
+
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (2, '', 'true', '{"temperature":25,"humidity":98}', 'A1', 1);

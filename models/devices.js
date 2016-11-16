@@ -41,7 +41,7 @@ function getSingleDevice(req, res, next) {
 
 // POST
 function createDevice(req, res, next) {
-  db.none("INSERT INTO devices (type_id, name, state, sensor, values, port, room_id) VALUES ($1, $2, $3, $4, $5, $6, $7)", [req.body.type_id, req.body.name, req.body.state, req.body.sensor, req.body.values, req.body.port, req.params.room_id])
+  db.none("INSERT INTO devices (type_id, name, state, values, port, room_id) VALUES ($1, $2, $3, $4, $5, $6, $7)", [req.body.type_id, req.body.name, req.body.state, req.body.values, req.body.port, req.params.room_id])
     .then(function() {
       res.status(200)
         .json({
