@@ -48,6 +48,8 @@ CREATE TABLE devices (
   values JSON,
   port VARCHAR,
   room_id INTEGER,
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now(),
 
   FOREIGN KEY (room_id) REFERENCES rooms (_id),
   FOREIGN KEY (type_id) REFERENCES types (_id)
