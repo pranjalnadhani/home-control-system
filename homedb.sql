@@ -46,7 +46,7 @@ CREATE TABLE devices (
   name VARCHAR,
   state BOOLEAN NOT NULL,
   values JSON,
-  port VARCHAR,
+  port INTEGER,
   room_id INTEGER,
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now(),
@@ -72,8 +72,8 @@ INSERT INTO homes (name, address, user_id)
 INSERT INTO rooms (name, home_id)
   VALUES ('Bedroom', 1);
 
-INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (1, 'Bulb 1', 'true', '{"brightness":"100"}', 'A2', 1);
+INSERT INTO devices (type_id, name, state, values, room_id)
+  VALUES (1, 'Bulb 1', 'true', '{"brightness":"100"}', 1);
 
-INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (2, '', 'true', '{"temperature":25,"humidity":98}', 'A1', 1);
+INSERT INTO devices (type_id, state, values, room_id)
+  VALUES (2, 'true', '{"temperature":25,"humidity":98}', 1);

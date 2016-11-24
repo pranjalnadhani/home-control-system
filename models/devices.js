@@ -11,7 +11,7 @@ module.exports = {
 
 // GET All Todos
 function getAllDevices(req, res, next) {
-  db.any("SELECT * FROM devices WHERE room_id = $1;", req.params.room_id)
+  db.any("SELECT devices._id, types.name as type, sensor, state, devices.values as device_values, types.values as type_values, port FROM devices INNER JOIN types ON devices.type_id = types._id WHERE room_id = $1;", req.params.room_id)
     .then(function(data) {
       res.status(200)
         .json({
@@ -26,7 +26,7 @@ function getAllDevices(req, res, next) {
 
 // GET Single Todo
 function getSingleDevice(req, res, next) {
-  db.one("SELECT * FROM devices WHERE _id = $1", req.params.device_id)
+  db.one("SELECT devices._id, types.name as type, sensor, state, devices.values as device_values, types.values as type_values, port FROM devices INNER JOIN types ON devices.type_id = types._id WHERE devices._id = $1", req.params.device_id)
     .then(function(data) {
       res.status(200)
         .json({
@@ -56,7 +56,7 @@ function createDevice(req, res, next) {
 
 // PUT
 function updateDevice(req, res, next) {
-  db.none("UPDATE devices SET type_id = $1, name = $2, state = $3, values = $4, port = $5, room_id = $6, updated_at = now() WHERE _id = $7", [parseInt(req.body.type_id), req.body.name, req.body.state, req.body.values, req.body.port, req.body.room_id, parseInt(req.params.device_id)])
+  db.none("UPDATE devices SET values = $1, updated_at = now() WHERE _id = $2", [req.body.device_values, parseInt(req.params.device_id)])
     .then(function() {
       res.status(200)
         .json({
