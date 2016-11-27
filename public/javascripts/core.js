@@ -2,15 +2,11 @@ var app = angular.module("myApp", []);
 
 app.controller("mainController", function ($scope, $http) {
   $scope.formData = {};
-  
-  $scope.checkedTodo = {
-    "text-decoration": "line-through"
-  };
-  
-  function getAllTodos() {
-    $http.get("/api/todos")
+
+  function getAllDevices() {
+    $http.get("/api/users/1/homes/1/rooms/1/devices")
     .success(function(data) {
-      $scope.todos = data.data;
+      $scope.devices = data.data;
       console.log(data);
     }).error(function(err) {
       console.log(err);
@@ -18,37 +14,16 @@ app.controller("mainController", function ($scope, $http) {
   }
 
   // show all todos in the landing page.
-  getAllTodos();
-    
-  // create a todo when submitting a form.
-  $scope.createTodo = function() {
-    $scope.formData.done = "false";
-    $http.post("/api/todos", $scope.formData)
+  getAllDevices();
+
+  $scope.updateDeviceValues = function(device) {
+    $scope.formData = device;
+    $http.put("/api/users/1/homes/1/rooms/1/devices/" + device.id, $scope.formData)
       .success(function(data) {
         $scope.formData = {};
-        getAllTodos();
-      }).error(function(err) {
-      console.log(err);
-    });
-  };
-  
-  $scope.updateTodo = function(todo) {
-    $scope.formData = todo;
-    $http.put("/api/todos/" + todo.id, $scope.formData)
-      .success(function(data) {
-        $scope.formData = {};
-        getAllTodos();
+        getAllDevices();
       }).error(function(err) {
         console.log(err);
       });
   }
-  
-  $scope.deleteTodo = function(todo_id) {
-    $http.delete("/api/todos/" + todo_id)
-      .success(function(data) {
-        getAllTodos();
-      }).error(function(err) {
-      console.log(err);
-    });
-  };
 });
