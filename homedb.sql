@@ -60,10 +60,22 @@ INSERT INTO users (username, password, email, mobile_no, first_name, last_name)
   VALUES ('sample', 'password', 'email@example.com', '9876543210', 'Sample', 'User');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('bulb', 'Bulb', 'Philips', 'false', '[{"name":"brightness","units":"%"}]');
+  VALUES ('bulb', 'Bulb', 'Philips', 'false', '[{"name":"brightness","units":""}]');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('dht22', 'Temperature & Humidity Sensor', 'China', 'true', '[{"name":"temperature","units":"C"},{"name":"humidity","units":"%"}]');
+  VALUES ('motor', 'Fan', 'Usha', 'false', '[{"name":"speed","units":""}]');
+
+INSERT INTO types (name, default_title, brand, sensor, values)
+  VALUES ('piezo', 'Buzzer', 'PeePee', 'false', '[{"name":"volume","units":""}]');
+
+INSERT INTO types (name, default_title, brand, sensor, values)
+  VALUES ('dht22', 'Temperature & Humidity Sensor', 'Adafruit', 'true', '[{"name":"temperature","units":"C"},{"name":"humidity","units":"%"}]');
+
+INSERT INTO types (name, default_title, brand, sensor, values)
+  VALUES ('ldr', 'Ambient Light Sensor', 'Robocraze', 'true', '[{"name":"intensity","units":""}]');
+
+INSERT INTO types (name, default_title, brand, sensor, values)
+  VALUES ('pir', 'Passive Infrared Motion Sensor', 'SparkFun', 'true', '[{"name":"motion","units":""}]');
 
 /* Debug purposes */
 INSERT INTO homes (name, address, user_id)
@@ -72,8 +84,23 @@ INSERT INTO homes (name, address, user_id)
 INSERT INTO rooms (name, home_id)
   VALUES ('Bedroom', 1);
 
-INSERT INTO devices (type_id, name, state, values, room_id)
-  VALUES (1, 'Bulb 1', 'true', '{"brightness":"100"}', 1);
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (1, 'Red Bulb', 'true', '{"brightness": 100}', 4, 1);
 
-INSERT INTO devices (type_id, state, values, room_id)
-  VALUES (2, 'true', '{"temperature":25,"humidity":98}', 1);
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (1, 'White Bulb', 'true', '{"brightness": 100}', 5, 1);
+
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (2, 'Room fan', 'true', '{"speed": 100}', 2, 1);
+
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (3, 'Burglars Alarm', 'true', '{"volume": 100}', 8, 1);
+
+INSERT INTO devices (type_id, state, values, port, room_id)
+  VALUES (4, 'true', '{"temperature": 25,"humidity": 98}', 10, 1);
+
+INSERT INTO devices (type_id, state, values, port, room_id)
+  VALUES (5, 'true', '{"intensity": 25}', 55, 1);
+
+INSERT INTO devices (type_id, state, values, port, room_id)
+  VALUES (6, 'true', '{"motion": true}', 7, 1);
