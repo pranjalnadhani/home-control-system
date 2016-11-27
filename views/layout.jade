@@ -2,12 +2,12 @@ doctype html
 html(ng-app="myApp")
   head
     title= title
-    
+
     // Meta for responsiveness
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
     meta(http-equiv="x-ua-compatible", content="ie=edge")
-    
+
     // AngularJS scripts
     script(src="./javascripts/angular.min.js")
     script(src="./javascripts/core.js")
@@ -15,11 +15,10 @@ html(ng-app="myApp")
     link(rel='stylesheet', href="./stylesheets/bootstrap.min.css")
     //link(rel='stylesheet', href="./stylesheets/font-awesome.min.css")
     link(rel='stylesheet', href='./stylesheets/style.css')
-    
+
   body
     block content
-    
-    // Load the remaining JS
-    //script(src="./javascripts/jquery.min.js")
-    //script(src="./javascripts/bootstrap.min.js")
 
+    // Load the remaining JS
+    script(src="./javascripts/jquery.min.js")
+    script(src="./javascripts/bootstrap.min.js")

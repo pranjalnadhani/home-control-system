@@ -7,5 +7,6 @@ block content
 
     ul.list-group
       li.list-group-item(ng-repeat="device in devices")
-        h5.list-group-item-heading {{device.title || device.default_title}}
-        p.list-group-item-text Lorem ipsum dolores sit amet
+        strong.list-group-item-heading {{device.title || device.default_title}}
+        p.list-group-item-text(ng-repeat="types in device.type_values")
+          span.text-capitalize {{types.name}}: {{device.device_values[types.name]}}{{types.units}}
