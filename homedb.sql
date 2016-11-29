@@ -66,10 +66,10 @@ INSERT INTO types (name, default_title, brand, sensor, values)
   VALUES ('motor', 'Fan', 'Usha', 'false', '[{"name":"speed","units":""}]');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('piezo', 'Buzzer', 'PeePee', 'false', '[{"name":"volume","units":""}]');
+  VALUES ('piezo', 'Buzzer', 'PeePee', 'false', '[{"name":"tone","units":""}]');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('dht22', 'Temperature & Humidity Sensor', 'Adafruit', 'true', '[{"name":"temperature","units":"C"},{"name":"humidity","units":"%"}]');
+  VALUES ('dht22', 'Temperature & Humidity Sensor', 'Adafruit', 'true', '[{"name":"temperature","units":"°C"},{"name":"humidity","units":"%"}]');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
   VALUES ('ldr', 'Ambient Light Sensor', 'Robocraze', 'true', '[{"name":"intensity","units":""}]');
@@ -94,13 +94,13 @@ INSERT INTO devices (type_id, name, state, values, port, room_id)
   VALUES (2, 'Room fan', 'true', '{"speed": 100}', 2, 1);
 
 INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (3, 'Burglars Alarm', 'true', '{"volume": 100}', 8, 1);
+  VALUES (3, 'Burglars Alarm', 'true', '{"tone": 0}', 8, 1);
 
-INSERT INTO devices (type_id, state, values, port, room_id)
-  VALUES (4, 'true', '{"temperature": 25,"humidity": 98}', 10, 1);
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (4, 'Thermostat','true', '{"temperature": 25,"humidity": 98}', 10, 1);
 
 INSERT INTO devices (type_id, state, values, port, room_id)
   VALUES (5, 'true', '{"intensity": 25}', 55, 1);
 
-INSERT INTO devices (type_id, state, values, port, room_id)
-  VALUES (6, 'true', '{"motion": true}', 7, 1);
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (6, 'Motion Detector', 'true', '{"motion": true}', 7, 1);

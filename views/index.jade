@@ -5,8 +5,11 @@ block content
     nav.navbar.navbar-dark.navbar-fixed-top.bg-primary
       a.navbar-brand(href="#") Internet Home
 
-    ul.list-group
-      li.list-group-item(ng-repeat="device in devices")
-        strong.list-group-item-heading {{device.title || device.default_title}}
-        p.list-group-item-text(ng-repeat="types in device.type_values")
-          span.text-capitalize {{types.name}}: {{device.device_values[types.name]}}{{types.units}}
+    div.container-fluid
+      div.card(ng-repeat="device in devices")
+        div.card-block
+          h5.card-title {{device.title || device.default_title}}
+          div.card-text(ng-repeat="types in device.type_values")
+            span.text-capitalize {{types.name}}: {{device.device_values[types.name]}}{{types.units}}
+          div.card-text
+            small.text-muted Last updated {{device.updated_at | date: "HH:mm:ss Z"}}
