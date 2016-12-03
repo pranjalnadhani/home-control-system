@@ -85,22 +85,25 @@ INSERT INTO rooms (name, home_id)
   VALUES ('Bedroom', 1);
 
 INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (1, 'Red Bulb', 'true', '{"brightness": 100}', 4, 1);
+  VALUES (1, 'Red Bulb', 'true', '{"brightness": 255}', 9, 1);
 
 INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (1, 'White Bulb', 'true', '{"brightness": 100}', 5, 1);
+  VALUES (1, 'White Bulb', 'true', '{"brightness": 127}', 11, 1);
 
 INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (2, 'Room fan', 'true', '{"speed": 100}', 2, 1);
+  VALUES (2, 'Room fan', 'true', '{"speed": 255}', 3, 1);
 
 INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (3, 'Burglars Alarm', 'true', '{"tone": 0}', 8, 1);
+  VALUES (2, 'Room fan', 'true', '{"speed": 255}', 5, 1);
+  
+INSERT INTO devices (type_id, name, state, values, port, room_id)
+  VALUES (3, 'Burglars Alarm', 'true', '{"tone": 0}', 16, 1);
 
 INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (4, 'Thermostat','true', '{"temperature": 25,"humidity": 98}', 10, 1);
+  VALUES (4, 'Thermostat','true', '{"temperature": 25,"humidity": 98}', 8, 1);
 
 INSERT INTO devices (type_id, state, values, port, room_id)
-  VALUES (5, 'true', '{"intensity": 25}', 55, 1);
+  VALUES (5, 'true', '{"intensity": 25}', 14, 1);
 
 INSERT INTO devices (type_id, name, state, values, port, room_id)
-  VALUES (6, 'Motion Detector', 'true', '{"motion": true}', 7, 1);
+  VALUES (6, 'Motion Detector', 'true', '{"motion": false}', 7, 1);

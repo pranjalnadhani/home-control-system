@@ -8,6 +8,8 @@
   "dependencies": {
     "bluebird": "^3.3.4",
     "body-parser": "~1.15.1",
+    "jquery": "*",
+    "tether": "*",
     "bootstrap": "^4.0.0-alpha.5",
     "bootstrap-slider": "^9.5.1",
     "cookie-parser": "~1.4.3",
