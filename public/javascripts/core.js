@@ -1,4 +1,4 @@
-var app = angular.module("myApp", []);
+var app = angular.module("myApp", ["angularMoment"]);
 
 app.controller("mainController", function ($scope, $http) {
   $scope.formData = {};
@@ -6,7 +6,17 @@ app.controller("mainController", function ($scope, $http) {
   function getAllDevices() {
     $http.get("/api/users/1/homes/1/rooms/1/devices")
     .success(function(data) {
-      $scope.devices = data.data;
+      var devices = data.data;
+      for(i = 0; i < devices.length; i++){
+        var now = moment(Date.now());
+        var then = moment(devices[i].updated_at);
+        if(now.diff(then, 'minutes') <= 5){
+          devices[i]["available"] = "ONLINE";
+        } else {
+          devices[i]["available"] = "OFFLINE";
+        }
+      }
+      $scope.devices = devices;
       console.log(data);
     }).error(function(err) {
       console.log(err);
