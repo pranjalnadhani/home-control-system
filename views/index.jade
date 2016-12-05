@@ -8,12 +8,22 @@ block content
     div.container-fluid
       div.card(ng-repeat="device in devices")
         div.card-block
-          h5.float-xs-right(ng-if="device.sensor === true")
+          h5.float-xs-right(ng-if="device.sensor == true")
             span.tag.tag-success(ng-if="device.available == 'ONLINE'") {{device.available}}
             span.tag.tag-danger(ng-if="device.available == 'OFFLINE'") {{device.available}}
           h5.card-title {{device.title || device.default_title}}
+          hr
           div.card-text(ng-repeat="types in device.type_values")
-            span.text-capitalize {{types.name}}: {{device.device_values[types.name]}}{{types.units}}
+            span.text-capitalize
+              strong {{types.name + ": "}}
+              {{device.device_values[types.name]}}{{types.units}}
+            hr
+            div.card-text(ng-if="device.sensor == false")
+              rzslider(rz-slider-model="device.device_values[types.name]", rz-slider-options="types")
+              hr
+              p.text-xs-right
+                button.btn.btn-sm.btn-primary(ng-click="updateDeviceValues(device)") Update
           div.card-text
-            small.text-muted Last updated
-              time(am-time-ago="device.updated_at")
+          small.text-muted
+            {{"Last updated "}}
+            time(am-time-ago="device.updated_at")

@@ -60,13 +60,13 @@ INSERT INTO users (username, password, email, mobile_no, first_name, last_name)
   VALUES ('sample', 'password', 'email@example.com', '9876543210', 'Sample', 'User');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('bulb', 'Bulb', 'Philips', 'false', '[{"name":"brightness","units":""}]');
+  VALUES ('bulb', 'Bulb', 'Philips', 'false', '[{"name":"brightness","units":"","floor":0,"ceil":255,"step":1}]');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('motor', 'Fan', 'Usha', 'false', '[{"name":"speed","units":""}]');
+  VALUES ('motor', 'Fan', 'Usha', 'false', '[{"name":"speed","units":"","floor":0,"ceil":255,"step":1}]');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
-  VALUES ('piezo', 'Buzzer', 'PeePee', 'false', '[{"name":"tone","units":""}]');
+  VALUES ('piezo', 'Buzzer', 'PeePee', 'false', '[{"name":"tone","units":"","floor":0,"ceil":1023,"step":1}]');
 
 INSERT INTO types (name, default_title, brand, sensor, values)
   VALUES ('dht22', 'Temperature & Humidity Sensor', 'Adafruit', 'true', '[{"name":"temperature","units":"°C"},{"name":"humidity","units":"%"}]');
@@ -95,7 +95,7 @@ INSERT INTO devices (type_id, name, state, values, port, room_id)
 
 INSERT INTO devices (type_id, name, state, values, port, room_id)
   VALUES (2, 'Room fan', 'true', '{"speed": 255}', 5, 1);
-  
+
 INSERT INTO devices (type_id, name, state, values, port, room_id)
   VALUES (3, 'Burglars Alarm', 'true', '{"tone": 0}', 16, 1);
 

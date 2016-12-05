@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ["angularMoment"]);
+var app = angular.module("myApp", ["angularMoment", "rzModule"]);
 
 app.controller("mainController", function ($scope, $http) {
   $scope.formData = {};
@@ -28,7 +28,7 @@ app.controller("mainController", function ($scope, $http) {
 
   $scope.updateDeviceValues = function(device) {
     $scope.formData = device;
-    $http.put("/api/users/1/homes/1/rooms/1/devices/" + device.id, $scope.formData)
+    $http.put("/api/users/1/homes/1/rooms/1/devices/" + device._id, $scope.formData)
       .success(function(data) {
         $scope.formData = {};
         getAllDevices();

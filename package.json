@@ -8,10 +8,10 @@
   "dependencies": {
     "angular": "^1.5.9",
     "angular-moment": "^1.0.1",
+    "angularjs-slider": "^5.8.7",
     "bluebird": "^3.3.4",
     "body-parser": "~1.15.1",
     "bootstrap": "^4.0.0-alpha.5",
-    "bootstrap-slider": "^9.5.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.13.4",
