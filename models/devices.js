@@ -11,7 +11,7 @@ module.exports = {
 
 // GET All Todos
 function getAllDevices(req, res, next) {
-  db.any("SELECT devices._id, devices.name as title, types.name as type, types.default_title, sensor, state, devices.values as device_values, types.values as type_values, port, updated_at FROM devices INNER JOIN types ON devices.type_id = types._id WHERE room_id = $1;", req.params.room_id)
+  db.any("SELECT devices._id, devices.name as title, types.name as type, types.default_title, sensor, state, devices.values as device_values, types.values as type_values, port, updated_at FROM devices INNER JOIN types ON devices.type_id = types._id WHERE room_id = $1 ORDER BY devices._id ASC;", req.params.room_id)
     .then(function(data) {
       res.status(200)
         .json({
