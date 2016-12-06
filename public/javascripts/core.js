@@ -1,6 +1,6 @@
 var app = angular.module("myApp", ["angularMoment", "rzModule"]);
 
-app.controller("mainController", function ($scope, $http) {
+app.controller("mainController", function ($scope, $http, $interval) {
   $scope.formData = {};
 
   function getAllDevices() {
@@ -10,7 +10,7 @@ app.controller("mainController", function ($scope, $http) {
       for(i = 0; i < devices.length; i++){
         var now = moment(Date.now());
         var then = moment(devices[i].updated_at);
-        if(now.diff(then, 'minutes') <= 5){
+        if(now.diff(then, 'minutes') <= 2){
           devices[i]["available"] = "ONLINE";
         } else {
           devices[i]["available"] = "OFFLINE";
@@ -23,8 +23,12 @@ app.controller("mainController", function ($scope, $http) {
     });
   }
 
-  // show all todos in the landing page.
+  // Call the function once.
   getAllDevices();
+  var promise = $interval(getAllDevices, 10000);
+  $scope.$on("$destroy", function(){
+    $interval.cancel(promise);
+  });
 
   $scope.updateDeviceValues = function(device) {
     $scope.formData = device;
